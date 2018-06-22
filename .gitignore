@@ -2,3 +2,4 @@
 vendor
 tests/_support/_generated
 tests/_output
+\.DS_Store
