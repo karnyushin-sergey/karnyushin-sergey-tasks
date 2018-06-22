@@ -7,11 +7,9 @@
  * @param array arr1 - отсортированный по возрастанию
  *                          массив уникальных элементов
  * @param array arr2 - массив произвольной длинны произвольных чисел
- * @returns {Boolean}
+ * @return boolean
  */
-
 function haveSameItems(array $arr1, array $arr2)
 {
-    // Ваш код
-    return true;
+    return (count(array_diff($arr1, $arr2)) === 0) && (count(array_diff($arr2, $arr1)) === 0);
 }
