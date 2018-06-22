@@ -3,23 +3,29 @@
 class Emitter
 {
     /**
+     * @var array
+     */
+    private static $handlers = [];
+
+    /**
      * Создает экземпляр класса Emitter.
-     * @memberof Emitter
      */
     public function constructor()
     {
-        // Ваш код
     }
 
     /**
      * связывает обработчик с событием
      *
      * @param string event - событие
-     * @param Handler handler - обработчик
+     * @param mixed handler - обработчик
      */
     public function on($event, $handler)
     {
-        // Ваш код
+        if (!isset(self::$handlers[$event])) {
+            self::$handlers[$event] = [];
+        }
+        self::$handlers[$event][] = $handler;
     }
 
     /**
@@ -31,6 +37,11 @@ class Emitter
      */
     public function emit($event, $data)
     {
-        // Ваш код
+        if (!isset(self::$handlers[$event])) {
+            return;
+        }
+        foreach (self::$handlers[$event] as $handler) {
+            $handler($data);
+        }
     }
 }
